@@ -1,0 +1,36 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'by.rtty.decoder'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'by.rtty.decoder'
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName '1.0'
+    }
+
+    signingConfigs {
+        // Постоянный ключ в репозитории, чтобы новые версии ставились поверх старых
+        release {
+            storeFile file('rtty.keystore')
+            storePassword 'rttydecoder'
+            keyAlias 'rtty'
+            keyPassword 'rttydecoder'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
